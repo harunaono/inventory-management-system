@@ -6,7 +6,7 @@
         <title>在庫管理システム</title>
     </head>
     <body>
-      <div style="margin_left: 200px;">
+      <div style="margin-left: 200px;">
       <h2>在庫管理システム</h2>
          <p><a href="<c:url value='/store/new' />">１．店舗登録</a></p>
          <p><a href="<c:url value='/product/new' />">２．商品登録</a></p>
