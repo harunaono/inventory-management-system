@@ -5,7 +5,7 @@
             <div id="flush_success">
                 <c:out value="${flush}"></c:out>
             </div>
-</c:if>
+        </c:if>
     <head>
         <meta charset="UTF-8">
         <title>在庫管理システム</title>
