@@ -10,6 +10,18 @@
         <meta charset="UTF-8">
         <title>在庫管理システム</title>
     </head>
+            <div id="header">
+                <div id="header_menu">
+                    <h1><a href="<c:url value='/' />"></a></h1>&nbsp;&nbsp;&nbsp;
+
+                </div>
+                <c:if test="${sessionScope.login_store != null}">
+                    <div id="employee_name">
+                        <c:out value="${sessionScope.login_store.store_name}" />&nbsp;店&nbsp;&nbsp;&nbsp;
+                        <a href="<c:url value='/logout' />">ログアウト</a>
+                    </div>
+                </c:if>
+            </div>
     <body>
       <div style="margin-left: 200px;">
       <h2>在庫管理システム</h2>
