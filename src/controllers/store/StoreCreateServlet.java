@@ -17,7 +17,7 @@ import utils.DBUtil;
 import utils.EncryptUtil;
 
 /**
- * Servlet implementation class EmployeesCreateServlet
+ * Servlet implementation class StoreCreateServlet
  */
 @WebServlet("/store/create")
 public class StoreCreateServlet extends HttpServlet {

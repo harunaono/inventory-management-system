@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Store;
 
 /**
- * Servlet implementation class EmployeesNewServlet
+ * Servlet implementation class StoreNewServlet
  */
 @WebServlet("/store/new")
 public class StoreNewServlet extends HttpServlet {
