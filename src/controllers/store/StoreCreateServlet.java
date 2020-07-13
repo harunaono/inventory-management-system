@@ -50,10 +50,7 @@ public class StoreCreateServlet extends HttpServlet {
                             )
                     );
 
-
-            s.setDelete_flag(0);
-
-            List<String> errors = StoreValidator.validate(s, true, true);
+            List<String> errors = StoreValidator.validate(s, true);
             if(errors.size() > 0) {
                 em.close();
 

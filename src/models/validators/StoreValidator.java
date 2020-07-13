@@ -9,10 +9,10 @@ import models.Store;
 import utils.DBUtil;
 
 public class StoreValidator {
-    public static List<String> validate(Store s, Boolean code_duplicate_check_flag, Boolean password_check_flag) {
+    public static List<String> validate(Store s, Boolean password_check_flag) {
         List<String> errors = new ArrayList<String>();
 
-        String code_error = _validateCode(s.getCode(), code_duplicate_check_flag);
+        String code_error = _validateCode(s.getCode());
         if(!code_error.equals("")) {
             errors.add(code_error);
         }
@@ -29,21 +29,19 @@ public class StoreValidator {
         return errors;
     }
 
-    private static String _validateCode(String code, Boolean code_duplicate_check_flag) {
+    private static String _validateCode(String code) {
         if(code == null || code.equals("")) {
             return "IDを入力してください。";
         }
 
-        if(code_duplicate_check_flag) {
-            EntityManager em = DBUtil.createEntityManager();
-            long store_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
+        EntityManager em = DBUtil.createEntityManager();
+        long store_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
                                         .setParameter("code",  code)
                                         .getSingleResult();
-            em.close();
-            if(store_count > 0) {
-                return "入力されたIDはすでに存在しています。";
+        em.close();
+        if(store_count > 0) {
+             return "入力されたIDはすでに存在しています。";
             }
-        }
 
         return"";
     }

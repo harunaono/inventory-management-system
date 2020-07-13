@@ -30,6 +30,7 @@ import javax.persistence.Table;
 })
 @Entity
 public class Store {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,15 +47,6 @@ public class Store {
 
     @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
-
-
-    public Integer getDelete_flag() {
-        return delete_flag;
-    }
-
-    public void setDelete_flag(Integer delete_flag) {
-        this.delete_flag = delete_flag;
-    }
 
     public Integer getId() {
         return id;
@@ -87,6 +79,15 @@ public class Store {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Integer getDelete_flag() {
+        return delete_flag;
+    }
+
+    public void setDelete_flag(Integer delete_flag) {
+        this.delete_flag = delete_flag;
+    }
+
 
 
 

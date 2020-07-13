@@ -23,7 +23,7 @@ public class ProductValidator {
             errors.add(product_error);
         }
 
-        String product_number_error = _validateProduct_number(p.getProduct_number(), true);
+        String product_number_error = _validateProduct_number(p.getProduct_number());
         if(!product_number_error.equals("")) {
             errors.add(product_number_error);
         }
@@ -62,22 +62,22 @@ public class ProductValidator {
         return "";
     }
 
-    private static String _validateProduct_number(Integer product_number, boolean product_number_duplicate_check_flag) {
+    private static String _validateProduct_number(Integer product_number) {
         if (product_number == null || product_number.equals("")) {
             return "品番を入力してください。";
         }
 
 
-        if(product_number_duplicate_check_flag) {
-            EntityManager em = DBUtil.createEntityManager();
-            long product_number_count = (long)em.createNamedQuery("checkRegisteredProduct_number", Long.class)
+
+        EntityManager em = DBUtil.createEntityManager();
+        long product_number_count = (long)em.createNamedQuery("checkRegisteredProduct_number", Long.class)
                                        .setParameter("product_number", product_number)
                                          .getSingleResult();
         em.close();
         if(product_number_count > 0) {
             return "入力された品番の情報はすでに存在しています。";
         }
-    }
+
 
     return "";
 }

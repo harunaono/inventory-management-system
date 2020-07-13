@@ -13,10 +13,7 @@ import javax.persistence.Table;
 
 @Table(name = "product")
 @NamedQueries({
-    @NamedQuery(
-            name = "checkRegisteredProduct_number",
-            query = "SELECT COUNT(p) FROM Product AS p WHERE p.product_number = :product_number"
-            )
+        @NamedQuery(name = "checkRegisteredProduct_number", query = "SELECT COUNT(p) FROM Product AS p WHERE p.product_number = :product_number")
 
 })
 @Entity
@@ -44,8 +41,8 @@ public class Product {
     @Column(name = "price", nullable = false)
     private Integer price;
 
-    @Column(name = "created_at", nullable = false)
-    private Date created_at;
+    @Column(name = "created_date", nullable = false)
+    private Date created_date;
 
     public Integer getId() {
         return id;
@@ -103,12 +100,12 @@ public class Product {
         this.price = price;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreated_date() {
+        return created_date;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
     }
 
 }
