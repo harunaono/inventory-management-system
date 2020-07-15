@@ -16,7 +16,7 @@
 
                 </div>
                 <c:if test="${sessionScope.login_store != null}">
-                    <div id="employee_name">
+                    <div id="store_name">
                         <c:out value="${sessionScope.login_store.store_name}" />&nbsp;店&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/logout' />">ログアウト</a>
                     </div>
@@ -27,7 +27,7 @@
       <h2>在庫管理システム</h2>
          <p><a href="<c:url value='/store/new' />">１．店舗登録</a></p>
          <p><a href="<c:url value='/product/new' />">２．商品登録</a></p>
-         <p><a href="<c:url value='/arrival/new' />">３．入荷登録</a></p>
+         <p><a href="<c:url value='/arrivals/new' />">３．入荷登録</a></p>
          <p><a href="<c:url value='/arrival/list' />">４．入荷一覧</a></p>
          <p><a href="<c:url value='/sales/new' />">５．売上登録</a></p>
          <p><a href="<c:url value='/sales/list' />">６．売上一覧</a></p>

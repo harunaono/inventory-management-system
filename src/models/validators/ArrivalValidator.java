@@ -47,7 +47,7 @@ public class ArrivalValidator {
 
     private static String _validateQuantity(Integer quantity) {
         if(quantity == null || quantity.equals("")) {
-            return "数量を入力してください。";
+            return "個数を入力してください。";
             }
 
         return "";

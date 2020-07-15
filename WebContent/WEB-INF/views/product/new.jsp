@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h2>商品登録</h2>
- <form method="POST" action="<c:url value='/product/create' />">
+<form method="POST" action="<c:url value='/product/create' />">
 <c:if test="${errors != null}">
     <div id="flush_error">
         入力内容にエラーがあります。<br />
