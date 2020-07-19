@@ -1,4 +1,4 @@
-package controllers.product;
+package controllers.arrivals;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -12,21 +12,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Arrival;
 import models.Product;
-import models.validators.ProductValidator;
+import models.Store;
+import models.validators.ArrivalValidator;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class ProductCreateServlet
+ * Servlet implementation class ArrivalsCreateServlet
  */
-@WebServlet("/product/create")
-public class ProductCreateServlet extends HttpServlet {
+@WebServlet("/arrivals/create")
+public class ArrivalsCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductCreateServlet() {
+    public ArrivalsCreateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,31 +42,35 @@ public class ProductCreateServlet extends HttpServlet {
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Product p = new Product();
+            Arrival a = new Arrival();
+            a.setProduct_number(Integer.parseInt(request.getParameter("product_number")));
 
-            p.setBrand_name(request.getParameter("brand_name"));
-            p.setProduct(request.getParameter("product"));
-            p.setProduct_number(Integer.parseInt(request.getParameter("product_number")));
-            p.setSize(request.getParameter("size"));
-            p.setColor(request.getParameter("color"));
-            p.setPrice(Integer.parseInt(request.getParameter("price")));
+            Product product = em.createNamedQuery("checkRegisteredProduct_number", Product.class)
+                    .setParameter("product_number", a.getProduct_number())
+                    .getSingleResult();
 
-            Date currentDate = new Date(System.currentTimeMillis());
-            p.setCreated_date(currentDate);
+            a.setProduct(product);
+            a.setStore((Store) request.getSession().getAttribute("login_store"));
+            a.setQuantity(Integer.parseInt(request.getParameter("quantity")));
 
-            List<String> errors = ProductValidator.validate(p);
+            Date currentDate = Date.valueOf(request.getParameter("arrival_date"));
+            a.setArrival_date(currentDate);
+
+            List<String> errors = ArrivalValidator.validate(a);
             if (errors.size() > 0) {
+
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("product", p);
+                request.setAttribute("arrival", a);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/product/new.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/arrivals/new.jsp");
+
                 rd.forward(request, response);
             } else {
                 em.getTransaction().begin();
-                em.persist(p);
+                em.persist(a);
                 em.getTransaction().commit();
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
@@ -73,5 +79,4 @@ public class ProductCreateServlet extends HttpServlet {
             }
         }
     }
-
 }

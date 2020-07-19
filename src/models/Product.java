@@ -11,9 +11,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "product")
+@Table(name = "products")
 @NamedQueries({
-        @NamedQuery(name = "checkRegisteredProduct_number", query = "SELECT COUNT(p) FROM Product AS p WHERE p.product_number = :product_number")
+        @NamedQuery(name = "checkRegisteredProduct_number", query = "SELECT p FROM Product AS p WHERE p.product_number = :product_number")
 
 })
 @Entity

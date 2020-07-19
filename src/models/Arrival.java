@@ -16,9 +16,13 @@ import javax.persistence.Table;
 @Table(name = "Arrivals")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllArrival",
+            name = "getAllArrivals",
             query = "SELECT a FROM Store AS a ORDER BY a.id DESC"
-            )
+            ),
+    @NamedQuery(
+            name = "getArrivalsCount",
+            query = "SELECT COUNT(a) FROM Arrival AS a"
+            ),
 })
 @Entity
 public class Arrival {
@@ -41,6 +45,9 @@ public class Arrival {
 
     @Column(name = "arrival_date", nullable = false)
     private Date arrival_date;
+
+    @Column(name = "product_number", nullable = false)
+    private Integer product_number;
 
     public Integer getId() {
         return id;
@@ -81,6 +88,15 @@ public class Arrival {
     public void setArrival_date(Date arrival_date) {
         this.arrival_date = arrival_date;
     }
+
+    public Integer getProduct_number() {
+        return product_number;
+    }
+
+    public void setProduct_number(Integer product_number) {
+        this.product_number = product_number;
+    }
+
 }
 
 

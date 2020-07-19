@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Arrival;
-import models.Product;
 
 public class ArrivalValidator {
     public static List<String> validate(Arrival a) {
@@ -16,7 +15,7 @@ public class ArrivalValidator {
             errors.add(arrival_date_error);
         }
 
-        String product_number_error = _validateProduct_number(a.getProduct());
+        String product_number_error = _validateProduct_number(a.getProduct_number());
         if(!product_number_error.equals("")) {
             errors.add(product_number_error);
         }
@@ -37,8 +36,8 @@ public class ArrivalValidator {
         return "";
     }
 
-    private static String _validateProduct_number(Product product) {
-        if(product == null || product.equals("")) {
+    private static String _validateProduct_number(Integer product_number) {
+        if(product_number == null || product_number.equals("")) {
             return "品番を入力してください。";
             }
 
