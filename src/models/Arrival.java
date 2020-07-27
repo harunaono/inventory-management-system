@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllArrivals",
-            query = "SELECT a FROM Store AS a ORDER BY a.id DESC"
+            query = "SELECT a FROM Arrival AS a ORDER BY a.id DESC"
             ),
     @NamedQuery(
             name = "getArrivalsCount",
