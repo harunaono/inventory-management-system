@@ -5,6 +5,7 @@
 		<class>models.Store</class>
 		<class>models.Product</class>
 		<class>models.Arrival</class>
+		<class>models.Sales</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/inventory_management_system?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
